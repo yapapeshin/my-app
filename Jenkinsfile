@@ -35,7 +35,7 @@ pipeline {
                     // Остановить старый контейнер, запустить новый
                     sh 'docker stop my-app || true'
                     sh 'docker rm my-app || true'
-                    sh "docker run -d --name my-app -p 5000:5000 my-app:${env.BUILD_NUMBER}"
+                    sh "docker run -d --name my-app -p 5005:5000 my-app:${env.BUILD_NUMBER}"
                 }
             }
         }
