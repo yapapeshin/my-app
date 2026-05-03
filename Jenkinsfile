@@ -27,9 +27,7 @@ pipeline {
         }
         
         stage('Deploy (CD)') {
-            when {
-                branch 'master'
-            }
+
             steps {
                 script {
                     // Остановить старый контейнер, запустить новый
