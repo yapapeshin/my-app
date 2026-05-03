@@ -28,7 +28,7 @@ pipeline {
         
         stage('Deploy (CD)') {
             when {
-                branch 'main'
+                branch 'master'
             }
             steps {
                 script {
