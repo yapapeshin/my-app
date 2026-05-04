@@ -27,9 +27,6 @@ pipeline {
         }
         
         stage('Deploy (CD)') {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     sh 'docker stop my-app || true'
