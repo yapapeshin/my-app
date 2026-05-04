@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/yapapeshin/my-app.git'
+                checkout scm
             }
         }
         
@@ -27,10 +27,11 @@ pipeline {
         }
         
         stage('Deploy (CD)') {
-
+            when {
+                branch 'master'
+            }
             steps {
                 script {
-                    // Остановить старый контейнер, запустить новый
                     sh 'docker stop my-app || true'
                     sh 'docker rm my-app || true'
                     sh "docker run -d --name my-app -p 5005:5000 my-app:${env.BUILD_NUMBER}"
