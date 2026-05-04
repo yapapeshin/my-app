@@ -4,14 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Клонирование репозитория'
                 checkout scm
+            }
+            script {
+                echo "Текущая ветка: ${env.BRANCH_NAME}"
             }
         }
         
         stage('Build Docker Image') {
             steps {
-                echo 'Сборка Docker образа'
                 script {
                     docker.build("my-app:${env.BUILD_NUMBER}")
                 }
@@ -20,7 +21,6 @@ pipeline {
         
         stage('Run Tests') {
             steps {
-                echo 'Запуск тестов'
                 script {
                     docker.image("my-app:${env.BUILD_NUMBER}").inside {
                         sh 'python test_app.py'
@@ -34,7 +34,6 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Деплой (только ветка master)'
                 script {
                     sh 'docker stop my-app || true'
                     sh 'docker rm my-app || true'
