@@ -6,9 +6,6 @@ pipeline {
             steps {
                 checkout scm
             }
-
-            echo 'Вывод в консоль'
-
         }
         
         stage('Build Docker Image') {
