@@ -6,9 +6,6 @@ pipeline {
             steps {
                 checkout scm
             }
-            script {
-                echo "Текущая ветка: ${env.BRANCH_NAME}"
-            }
         }
         
         stage('Build Docker Image') {
