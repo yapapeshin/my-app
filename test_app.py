@@ -5,7 +5,7 @@ class TestApp(unittest.TestCase):
     def test_home(self):
         with app.test_client() as c:
             response = c.get('/')
-            self.assertEqual(response.data, b"something else!")
+            self.assertEqual(response.data, b"something else")
 
 if __name__ == '__main__':
     unittest.main()
